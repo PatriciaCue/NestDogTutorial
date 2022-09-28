@@ -1,11 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { DogService } from './dogs.service';
 import { DogsService } from './dogs/dogs.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private dogService: DogService, private dogsService: DogsService) {}
+  constructor(private readonly appService: AppService, private dogsService: DogsService) {}
 
   @Get('algo')
   getHello(): string {

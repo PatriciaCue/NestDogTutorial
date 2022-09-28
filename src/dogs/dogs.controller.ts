@@ -19,10 +19,10 @@ export class DogsController {
   }
 
   //ENDPOINT listAllBreeds 
-  /*
+  
   @Get('listAllBreeds')
   async listAllBreeds(): Promise<string> {
     return await this.dogsService.getlistAllBreeds();
   }
-  */
+  
 }

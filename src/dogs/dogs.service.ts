@@ -21,48 +21,47 @@ export class DogsService {
     const result=await axios.get('https://dog.ceo/api/breeds/image/random');
     console.log(result.data, 'result');
     const randomImageData: RandomImageResponse =result.data;
-    //return 'randomImageData.message';
     return randomImageData.message;
   }
 
-  /*
-  async getlistAllBreeds (): Promise<string>{
+  
+  async getlistAllBreeds (): Promise<any>{
     const result=await axios.get('https://dog.ceo/api/breeds/list/all');
     const listAllBreeds: ListAllResponse =result.data;
     console.log('result.data INFO', result.data);
 
     //---Me devuelve un array de strings---//
-    var nomrazas:string[]=Object.keys(listAllBreeds.message);
-    var subrazas:string[]=Object.values(listAllBreeds.message);
+    const nomrazas:string[]=Object.keys(listAllBreeds.message);
+    const subrazas:string[]=Object.values(listAllBreeds.message);
     
-    var misPerros : Array<Dog>=[];
-
-    nomrazas.forEach(function(elemento, indice, array) {
-        let miRaza = new Dog(elemento,[],0);
-        miRaza.nombreRaza=elemento;
-        
-        if (subrazas[indice]=='') {
-          miRaza.subraza=[];
-          miRaza.totalsubrazas=0;
-        } else {
-          miRaza.subraza.push(subrazas[indice]);
-          miRaza.totalsubrazas=subrazas[indice].length;
-        }
-        
-        misRazas.push(miRaza);
-
+    console.log(nomrazas,'nomrazas');
+    console.log(subrazas,'subrazas');
+    
+    const misPerros : Array<Dog>=[];
+    const finalBreedsOutput: Dog[] =[];
+  
+    nomrazas.forEach((e,i) => {
+      console.log(`El nombre de la raza es ${e}, ${i}`);
+      let perro: Dog={
+        nombreRaza:'',
+        subraza:[] ,
+        totalsubrazas:0
+      }
+      perro.nombreRaza=e;
+      if (subrazas[i]==''){
+        console.log(subrazas[i],'subrazas[i]');
+        perro.subraza=[];
+        perro.totalsubrazas=0;
+      }else{
+        perro.subraza.push(subrazas[i]);
+        perro.totalsubrazas=subrazas[i].length;
+      }
+      misPerros.push(perro);
     });
 
-    misRazas.forEach(e => {
-      console.log('El tipo de raza es' , e.nombreRaza);
-      e.subraza.forEach(ele => {
-        console.log('Subraza ', ele);
-      });
-    });
-
-    
-    return 'randomImageData.message';
+    console.log(misPerros,'misPerros');    
+    return misPerros;
   }
-  */
+  
 }
 

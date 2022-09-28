@@ -3,3 +3,13 @@ En el lado de node se usa el modulo http
 
 Tenemos que instalarlo usando 
 $npm install axios
+
+Para arrancar el proyecto tenemos que hacer
+$nest start
+
+
+AGREGAR UN NUEVO CONTROLADOR, PARA DEFINIR RUTAS
+$ nest g controller name
+
+Si lo hacemos con el comando se instala todo solo, si no:
+-Tenemos que importarlo en app.nodule.ts para que funcione en [controllers]
