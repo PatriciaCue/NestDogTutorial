@@ -1,7 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DogsService } from './dogs.service';
+import { Breed } from './dto/breed.dto';
 import { Breeds } from './dto/breeds.dto';
+import { DogImage } from './dto/dogimage.dto';
 
 
 @ApiTags('perretes')
@@ -28,23 +30,19 @@ export class DogsController {
   }
 
   //ENDPOINT listAllBreeds 
-  
   @Get('listAllBreeds')
   async listAllBreeds(): Promise<Breeds> {
     return await this.dogsService.getlistAllBreeds();
   }
   
   @Get('listsubBreeds/:breed')
-  async listsubBreeds(@Param ('breed') breed: string): Promise<string>{
-    return await this.dogsService.listsubBreeds(breed);
+  async listsubBreeds(@Param ('breed') breed: string): Promise<Breed>{
+    return await this.dogsService.getlistsubBreeds(breed);
   }
   
-  /*
-  
-    @Get('listsubBreeds')
-    async listsubBreeds(): Promise<string> {
-    return await this.dogsService.listsubBreeds();
+  @Get('imageBreed/:breed')
+  async imageBreed(@Param ('breed') breed: string): Promise<DogImage>{
+    return await this.dogsService.getImageListOfABreed(breed);
   }
   
-  */
 }

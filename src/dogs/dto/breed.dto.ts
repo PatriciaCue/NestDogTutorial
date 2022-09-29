@@ -1,7 +1,9 @@
+import { SubBreed } from "./subbreed.dto";
 
 export class Breed{
 
   name:string;
-  subbreeds:string[];
+  subbreeds:SubBreed[];
+  //subbreeds:string[];
   
 }

@@ -1,4 +1,4 @@
-export interface RandomImageResponse{
+export class RandomImageResponseRaw{
 
   //La API de perros en el ENDPOINT Random image
   //Devuelve un string con una imagen y status
@@ -10,7 +10,7 @@ export interface RandomImageResponse{
         "status": "success"
       }
    */
-  message: string;
+  message: string[];
   status: string;
 
 }
