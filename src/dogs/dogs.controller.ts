@@ -1,6 +1,10 @@
 import { Controller, Get, Param } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DogsService } from './dogs.service';
+import { Breeds } from './dto/breeds.dto';
 
+
+@ApiTags('perretes')
 @Controller('dogs')
 export class DogsController {
 
@@ -11,8 +15,13 @@ export class DogsController {
     return 'This action returns all dogs';
   }
 
-
   //ENDPOINT randomImage
+  @ApiOperation({summary:'Show randomImage'})
+  @ApiResponse({
+    status:200,
+    description: 'The found record, message and status',
+    //type:Dog,
+  })
   @Get('randomImage')
   async getRandomImage(): Promise<string> {
     return await this.dogsService.getRandomImage();
@@ -21,7 +30,7 @@ export class DogsController {
   //ENDPOINT listAllBreeds 
   
   @Get('listAllBreeds')
-  async listAllBreeds(): Promise<string> {
+  async listAllBreeds(): Promise<Breeds> {
     return await this.dogsService.getlistAllBreeds();
   }
   

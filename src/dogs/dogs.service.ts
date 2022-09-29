@@ -1,13 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { ClassSerializerInterceptor, Injectable } from '@nestjs/common';
 import axios from 'axios';
-import { Dog } from './interfaces/dog.interface'
+import { Breed } from './dto/breed.dto';
+import { Breeds } from './dto/breeds.dto';
+//import { Dog } from './interfaces/dog.interface'
 import { ListAllResponse } from './interfaces/listallResponse.interface';
 import { RandomImageResponse } from './interfaces/randomImageResponse';
+import { getlistAllBreedsRawToBreeds } from './mappers/getListAllBreedsRawToBreeds.mapper';
 
 @Injectable()
 export class DogsService {
-  private readonly dogs: Dog[] = [];
-
+  //private readonly dogs: Dog[] = [];
+/*
   create(dog: Dog) {
     this.dogs.push(dog);
   }
@@ -15,7 +18,7 @@ export class DogsService {
   findAll(): Dog[] {
     return this.dogs;
   }
-
+*/
 
   async getRandomImage(): Promise<string> {
     const result=await axios.get('https://dog.ceo/api/breeds/image/random');
@@ -25,11 +28,16 @@ export class DogsService {
   }
 
   
-  async getlistAllBreeds (): Promise<any>{
+  async getlistAllBreeds (): Promise<Breeds>{
     const result=await axios.get('https://dog.ceo/api/breeds/list/all');
     const listAllBreeds: ListAllResponse =result.data;
-    console.log('result.data INFO', result.data);
+    //console.log('result.data INFO', result.data);
 
+    
+      
+      return getlistAllBreedsRawToBreeds.map(listAllBreeds);
+    
+    /*
     //---Me devuelve un array de strings---//
     const nomrazas:string[]=Object.keys(listAllBreeds.message);
     const subrazas:string[]=Object.values(listAllBreeds.message);
@@ -61,6 +69,7 @@ export class DogsService {
 
     console.log(misPerros,'misPerros');    
     return misPerros;
+  */
   }
   
 
