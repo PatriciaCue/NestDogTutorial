@@ -63,5 +63,19 @@ export class DogsService {
     return misPerros;
   }
   
+
+  async listsubBreeds(breed:string): Promise<any>{
+    const result=await axios.get(`https://dog.ceo/api/breed/${breed}/list`);
+    console.log(result.data, 'result');
+    return result.data;
+  }
+
+  /*
+  async listsubBreeds(): Promise<any>{
+    const result=await axios.get('https://dog.ceo/api/breed/hound/list');
+    console.log(result.data, 'result');
+    return result.data;
+  }
+  */
 }
 

@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 
 @Controller('dogs')
@@ -25,4 +25,17 @@ export class DogsController {
     return await this.dogsService.getlistAllBreeds();
   }
   
+  @Get('listsubBreeds/:breed')
+  async listsubBreeds(@Param ('breed') breed: string): Promise<string>{
+    return await this.dogsService.listsubBreeds(breed);
+  }
+  
+  /*
+  
+    @Get('listsubBreeds')
+    async listsubBreeds(): Promise<string> {
+    return await this.dogsService.listsubBreeds();
+  }
+  
+  */
 }
